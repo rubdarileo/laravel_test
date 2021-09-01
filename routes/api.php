@@ -18,5 +18,3 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-//Route::resource('productos', UserController::class);

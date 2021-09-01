@@ -14,31 +14,31 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-body">
-                <div class="pull-left"><h3>Lista de Productos</h3></div>
+                <div class="pull-left"><h3>Lista de Comentarios</h3></div>
                 <div class="pull-right">
                     <div class="btn-group">
-                    <a href="{{ route('products.create') }}" class="btn btn-info" >Añadir Producto</a>
+                    <a href="{{ route('products.index') }}" class="btn btn-info" >Productos</a>
+                    </div>
+                    <div class="btn-group">
+                    
+                    <a href="{{ route('createComments', ['id' => $product]) }}" class="btn btn-info" >Añadir Comentario</a>
                     </div>
                 </div>
                 <div class="table-container">
                     <table id="mytable" class="table table-bordred table-striped">
                     <thead>
-                    <th>Nombre</th>
-                    <th>Price</th>
-                    <th>Comentarios</th>
+                    <th>Comentario</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                     </thead>
                     <tbody>
-                    @if($products->count())  
-                    @foreach($products as $product)  
+                    @if($comments->count())  
+                    @foreach($comments as $comment)  
                     <tr>
-                        <td>{{$product->name}}</td>
-                        <td>{{$product->price}}</td>
-                        <td><a class="btn btn-primary btn-xs" href="{{ route('listComments', ['id' => $product->id]) }}" ><span class="glyphicon glyphicon-list"></span></a></td>
-                        <td><a class="btn btn-primary btn-xs" href="{{ route('products.show',$product->id) }}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td>{{$comment->description}}</td>
+                        <td><a class="btn btn-primary btn-xs" href="{{ route('showComments', ['id' => $product,'comment_id' => $comment->id]) }}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                         <td>
-                            <form action="{{ route('products.destroy',$product->id) }}" method="post">
+                            <form action="{{ route('destroyComments',['id' => $product,'comment_id' => $comment->id]) }}" method="post">
                             {{csrf_field()}}
                             <input name="_method" type="hidden" value="DELETE">
             
