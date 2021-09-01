@@ -10,13 +10,14 @@ class Comment extends Model
 
     protected $fillable = [
         'description',
+        'product_id'
     ];
 
     /**
      * Usuarios del comentario
      */
-    public function user()
+    public function product()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(Product::class);
     }
 }

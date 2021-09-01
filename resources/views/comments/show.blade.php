@@ -40,6 +40,7 @@
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
+                                            <input type="hidden" name="product_id" id="product_id" class="form-control input-sm" value="{{$product}}">
                                             <textarea name="description" class="form-control input-sm" placeholder="Comentario">{{$comment->description}}</textarea>
                                         </div>
                                     </div>

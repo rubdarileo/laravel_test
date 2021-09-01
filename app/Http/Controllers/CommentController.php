@@ -13,7 +13,7 @@ class CommentController extends Controller
      */
     public function index($id)
     {
-        $comments = \App\Models\Comment::all();
+        $comments = \App\Models\Comment::where('product_id',$id)->get();
         
         return view('comments.index', ['comments' => $comments, 'product' => $id]);
     }
@@ -38,8 +38,9 @@ class CommentController extends Controller
     public function store(Request $request, $id)
     {
         $this->validate($request,[ 'description'=>'required']);
+        
         \App\Models\Comment::create($request->all());
-        $comments = \App\Models\Comment::all();
+        $comments = \App\Models\Comment::where('product_id',$id)->get();
         return view('comments.index', ['product' => $id, 'comments'=>$comments]);
     }
 
@@ -67,7 +68,7 @@ class CommentController extends Controller
         $this->validate($request,[ 'description'=>'required']);
         
         \App\Models\Comment::find($comment_id)->update($request->all());
-        $comments = \App\Models\Comment::all();
+        $comments = \App\Models\Comment::where('product_id',$id)->get();
         return view('comments.index', ['product' => $id, 'comments'=>$comments]);
     }
 
@@ -80,7 +81,7 @@ class CommentController extends Controller
     public function destroy($id, $comment_id)
     {
         \App\Models\Comment::find($comment_id)->delete();
-        $comments = \App\Models\Comment::all();
+        $comments = \App\Models\Comment::where('product_id',$id)->get();
         return view('comments.index', ['product' => $id, 'comments'=>$comments]);
     }
 }

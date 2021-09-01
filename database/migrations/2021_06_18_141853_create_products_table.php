@@ -16,9 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('comment_id')->unsigned()->nullable();
-            $table->foreign('comment_id')->references('id')->on('comments');
-            $table->float('price')->default(0,00);
+            $table->float('price');
             $table->timestamps();
         });
     }

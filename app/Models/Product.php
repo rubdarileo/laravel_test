@@ -16,7 +16,6 @@ class Product extends Model
     protected $fillable = [
         'name',
         'price',
-        'comment_id',
     ];
 
     /**
@@ -24,6 +23,6 @@ class Product extends Model
     */
     public function comments()
     {
-        return $this->belongsTo(Comment::class);
+        return $this->hasMany(Comment::class);
     }
 }
